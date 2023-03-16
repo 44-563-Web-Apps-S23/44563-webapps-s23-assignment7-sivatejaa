@@ -15,24 +15,31 @@
   <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
 
   <button type="button" class="btn btn-primary" onclick="recordTime()">React</button>
+  <button type="button" class="btn btn-secondary" onclick="randomStart()">Random Start</button>
   
   <div id="target">Your time </div> 
   <div id="counter">Count </div> 
   
   <script> 
   let reactTime=undefined;
+  var startCount=8
   function recordTime(){
     reactTime=Date.now();
     console.log(reactTime);
   }
 
+  function randomStart(){
+        startCount = Math.floor(Math.random()*(10-2+1)+2)
+        startTime()
+    }
+
   function startTime(){
-    for(let i=0;i<=8;i++){
+    for(let i=0;i<=startCount;i++){
       //  alert("1st "+i);
         setTimeout(() => { 
           // alert("2nd "+i);
             document.getElementById('counter').innerHTML = "Count: "+i},
-         (8-i)*1000)
+         (startCount-i)*1000)
     }
     setTimeout(()=>{
         if(reactTime==undefined){
@@ -42,7 +49,7 @@
             endTime = Date.now()
             document.getElementById('target').innerHTML = "Time was "+(endTime-reactTime)
         }
-    },8*1000)
+    },startCount*1000)
 
   }
 
